@@ -2,6 +2,7 @@
     background-color: slategrey;
     font-family: 'Marvel', sans-serif;
     color: orangered;
+    text-align: center;
 }
 
 .banner {
@@ -23,6 +24,12 @@
 .menu {
     display: flex;
     justify-content: center;
+    text-align: center;
+}
+
+.menu2 {
+    display: flex;
+    justify-content: center;
     text-align: center
 }
 
@@ -30,19 +37,56 @@
     position: relative;
     top: -50px;
     border-radius: 0px 0px 15px 15px;
-    padding: 20px 65px 35px;
+    padding: 20px 40px 35px;
     background-color: dimgrey;
-    margin: 0 15px;
+    margin: 0 10px;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    color: aliceblue;
     z-index: 0;
-    -webkit-transition: top .5s;
-    transition: top .5s;
+    color: dimgrey;
+    transition: all 0.3s ease-out;
 }
 
-.menu a:hover {
+.menu2 a {
+    padding: 10px;
+    background-color: dimgrey;
+    margin: 0 5px;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+.menu a:hover, .menu2 a:hover {
     background-color: orangered;
     top: 0px;
+    color: aliceblue;
+}
+
+.arrow {
+    color: aliceblue;
+    font-weight: initial;
+    position: absolute;
+    bottom: 0px;
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.menu a:hover > .arrow {
+    opacity: 0;
+}
+
+table {
+    background-color: aliceblue;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+th {
+    padding: 5px 15px;
+}
+
+td {
+    padding: 5px 15px;
 }

@@ -3,39 +3,56 @@
 @{
     ViewData["Title"] = "Index";
 }
+<head>
+    <title>Async Inn</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Marvel" rel="stylesheet">
+</head>
 
-<h2>Index</h2>
+<body>
+    <img src="~/AsyncInnLogo.png" width="150" height="150" />
+    <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amenity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amenity.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.ID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amenity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Room)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amenity.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.ID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav class="menu2">
+        <a href="/Home">Home <span class="arrow">&#709;</span></a>
+        <a href="/Hotels">Hotels <span class="arrow">&#709;</span></a>
+        <a href="/HotelRooms">Hotel Rooms <span class="arrow">&#709;</span></a>
+        <a href="/Rooms">Room Types <span class="arrow">&#709;</span></a>
+        <a href="/RoomAmenities">Room Amenities <span class="arrow">&#709;</span></a>
+        <a href="/Amenities">Amenities <span class="arrow">&#709;</span></a>
+    </nav>
+</body>

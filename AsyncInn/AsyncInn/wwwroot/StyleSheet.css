@@ -1,0 +1,48 @@
+﻿body {
+    background-color: slategrey;
+    font-family: 'Marvel', sans-serif;
+    color: orangered;
+}
+
+.banner {
+    width: 100%;
+    height: 450px;
+    background-image: url("pic2.jpg");
+    background-repeat: no-repeat, repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1; 
+    background-color: dimgrey;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    text-align: center
+}
+
+.menu a {
+    position: relative;
+    top: -50px;
+    border-radius: 0px 0px 15px 15px;
+    padding: 20px 65px 35px;
+    background-color: dimgrey;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: aliceblue;
+    z-index: 0;
+    -webkit-transition: top .5s;
+    transition: top .5s;
+}
+
+.menu a:hover {
+    background-color: orangered;
+    top: 0px;
+}

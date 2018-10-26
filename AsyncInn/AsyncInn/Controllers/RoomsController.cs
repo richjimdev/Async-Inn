@@ -126,6 +126,7 @@ namespace AsyncInn.Controllers
 
             var room = await _context.Rooms
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (room == null)
             {
                 return NotFound();

@@ -55,7 +55,7 @@ namespace AsyncInn.Data
                 },
                 new Hotel
                 {
-                    ID = 4,
+                    ID = 5,
                     Name = "Async Honolulu",
                     Address = "12 Async Way, Honolulu, HI 91234",
                     Phone = "555-123-1234"
@@ -102,7 +102,7 @@ namespace AsyncInn.Data
 
                 );
 
-            modelBuilder.Entity<Room>().HasData(
+            modelBuilder.Entity<Amenities>().HasData(
                 new Amenities
                 {
                     ID = 1,

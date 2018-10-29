@@ -10,7 +10,7 @@ namespace AsyncInn.Models
     {
         public int ID { get; set; }
         [Required]
-        [StringLength(15,ErrorMessage = "15 Characters please!")]
+        [StringLength(20,ErrorMessage = "Max 20 Characters please!")]
         public string Name { get; set; }
         [Required]
         [EnumDataType(typeof(Layout))]

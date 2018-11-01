@@ -1,4 +1,5 @@
 ﻿using AsyncInn.Data;
+using AsyncInn.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AsyncInn.Models.Services
 {
-    public class RoomService
+    public class RoomService : IRooms
     {
         private AsyncInnDbContext _context;
 

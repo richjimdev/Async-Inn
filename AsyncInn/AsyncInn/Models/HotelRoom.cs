@@ -10,7 +10,6 @@ namespace AsyncInn.Models
     {
         public int HotelID { get; set; }
         [Required]
-        [StringLength(15, ErrorMessage = "Max 20 Characters please!")]
         [Display(Name = "Room Number")]
         public int RoomNumber { get; set; }
         [Display(Name = "Room Type")]

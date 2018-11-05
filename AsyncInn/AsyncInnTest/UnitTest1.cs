@@ -198,5 +198,98 @@ namespace AsyncInnTest
             }
         }
 
+        /// <summary>
+        /// Testing create and read room
+        /// </summary>
+        [Fact]
+        public async void CanCreateRoomDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("CreateRoom")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.Name = "Orca";
+                context.Rooms.Add(room);
+                context.SaveChanges();
+
+                //Act
+                var newRoom = await context.Rooms.FirstOrDefaultAsync(x => x.Name == room.Name);
+
+                //Assert
+                Assert.Equal(newRoom.Name, room.Name);
+            }
+        }
+
+        /// <summary>
+        /// Testing updating room
+        /// </summary>
+        [Fact]
+        public async void CanUpdateRoomDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("UpdateRoom")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.Name = "Orca";
+                context.Rooms.Add(room);
+                context.SaveChanges();
+
+                //Act
+                var newRoom = await context.Rooms.FirstOrDefaultAsync(x => x.Name == room.Name);
+
+                newRoom.Name = "Dolphin";
+                int id = newRoom.ID;
+
+                var updatedRoom = await context.Rooms.FirstOrDefaultAsync(x => x.ID == id);
+
+                //Assert
+                Assert.Equal("Dolphin", updatedRoom.Name);
+            }
+        }
+
+        /// <summary>
+        /// Testing deleting room
+        /// </summary>
+        [Fact]
+        public async void CanDeleteRoomDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("DeleteRoom")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange
+                Room room = new Room();
+                room.Name = "Orca";
+                context.Rooms.Add(room);
+                context.SaveChanges();
+
+                //Act
+                var newRoom = await context.Rooms.FirstOrDefaultAsync(x => x.Name == room.Name);
+
+                int id = newRoom.ID;
+
+                context.Rooms.Remove(newRoom);
+                await context.SaveChangesAsync();
+
+                var deletedRoom = await context.Rooms.FirstOrDefaultAsync(x => x.ID == id);
+
+                //Assert
+                Assert.Null(deletedRoom);
+            }
+        }
+
     }
 }

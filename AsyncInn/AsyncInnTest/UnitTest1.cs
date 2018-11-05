@@ -291,5 +291,45 @@ namespace AsyncInnTest
             }
         }
 
+        /// <summary>
+        /// Testing creating a Hotel Room.
+        /// </summary>
+        [Fact]
+        public async void CanCreateHotelRoomOnDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("CreateHotelRoom")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange
+                Hotel hotel = new Hotel();
+                hotel.Name = "Asyn Seattle";
+                Room room = new Room();
+                room.Name = "Orca";
+                context.Add(hotel);
+                context.Add(room);
+                context.SaveChanges();
+
+                //Act
+                var newHotel = context.Hotels.FirstOrDefaultAsync(x => x.Name == hotel.Name);
+                var newRoom = context.Rooms.FirstOrDefaultAsync(x => x.Name == room.Name);
+
+                HotelRoom hr = new HotelRoom();
+                hr.HotelID = newHotel.Id;
+                hr.RoomID = newRoom.Id;
+                hr.PetFriendly = true;
+                context.HotelRooms.Add(hr);
+                context.SaveChanges();
+
+                var hotelroom = await context.HotelRooms.FirstOrDefaultAsync(x => x.HotelID == hr.HotelID);
+
+                //Assert
+                Assert.Equal(hotelroom.RoomID, hr.RoomID);
+            }
+        }
+
     }
 }

@@ -370,5 +370,32 @@ namespace AsyncInnTest
             }
         }
 
+        /// <summary>
+        /// Test amenity creation
+        /// </summary>
+        [Fact]
+        public async void CanCreateAmenityDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("CreateAmenity")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange - create hotel and assign values
+                Amenities am = new Amenities();
+                am.Name = "A/C";
+                context.Amenities.Add(am);
+                context.SaveChanges();
+
+                //Act
+                var newAmenity = await context.Amenities.FirstOrDefaultAsync(x => x.Name == am.Name);
+
+                //Assert - grab from db and assert entry
+                Assert.Equal(newAmenity.Name, am.Name);
+            }
+        }
+
     }
 }

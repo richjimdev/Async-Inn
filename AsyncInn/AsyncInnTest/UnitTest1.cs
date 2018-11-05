@@ -331,5 +331,44 @@ namespace AsyncInnTest
             }
         }
 
+        /// <summary>
+        /// Testing room amenity creation
+        /// </summary>
+        [Fact]
+        public async void CanCreateRoomAmenityOnDB()
+        {
+            DbContextOptions<AsyncInnDbContext> options =
+            new DbContextOptionsBuilder<AsyncInnDbContext>()
+            .UseInMemoryDatabase("CreateRoomAmenity")
+            .Options;
+
+            using (AsyncInnDbContext context = new AsyncInnDbContext(options))
+            {
+                //Arrange
+                Amenities amenity = new Amenities();
+                amenity.Name = "A/C";
+                Room room = new Room();
+                room.Name = "Orca";
+                context.Add(amenity);
+                context.Add(room);
+                context.SaveChanges();
+
+                //Act
+                var newAmenity = context.Amenities.FirstOrDefaultAsync(x => x.Name == amenity.Name);
+                var newRoom = context.Rooms.FirstOrDefaultAsync(x => x.Name == room.Name);
+
+                RoomAmenities roomAm = new RoomAmenities();
+                roomAm.AmenitiesID = newAmenity.Id;
+                roomAm.RoomID = newRoom.Id;
+                context.RoomAmenities.Add(roomAm);
+                context.SaveChanges();
+
+                var roomamenity = await context.RoomAmenities.FirstOrDefaultAsync(x => x.AmenitiesID == roomAm.AmenitiesID);
+
+                //Assert
+                Assert.Equal(roomamenity.RoomID, roomAm.RoomID);
+            }
+        }
+
     }
 }

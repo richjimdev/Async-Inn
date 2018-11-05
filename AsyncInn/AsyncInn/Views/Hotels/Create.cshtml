@@ -2,12 +2,10 @@
 
 @{
     ViewData["Title"] = "Create";
+
+    Layout = "_Layout";
 }
-<head>
-    <title>Async Inn</title>
-    <link href="~/StyleSheet.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Marvel" rel="stylesheet">
-</head>
+
 <h2>Create</h2>
 
 <h4>Hotel</h4>
@@ -42,6 +40,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

@@ -30,7 +30,6 @@ namespace AsyncInn
 
             services.AddDbContext<AsyncInnDbContext>(options =>
             {
-
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
             });
 

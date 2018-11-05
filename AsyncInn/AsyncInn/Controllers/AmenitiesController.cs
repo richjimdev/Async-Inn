@@ -26,6 +26,15 @@ namespace AsyncInn.Controllers
             return View(await _amenities.GetAmenities());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string SearchField)
+        {
+            var myAmenities = await _amenities.GetAmenities();
+            myAmenities = myAmenities.Where(x => x.Name.Contains(SearchField)).ToList<Amenities>();
+
+            return View(myAmenities);
+        }
+
         // GET: Amenities/Details/5
         public async Task<IActionResult> Details(int? id)
         {

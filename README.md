@@ -1,5 +1,5 @@
 # Async-Inn
-This is a web app built using ASP.NET Core and MS SQL server. It features a hotel management system to perfom CRUD operations on data using the Entitiy Framework Core.
+This is a web app built using ASP.NET Core and MS SQL server. It features a hotel management system to perfom CRUD operations on data using the Entitiy Framework Core. Also using Dependency Injection.
 
 ## Visual
 ![](screencap.JPG)
